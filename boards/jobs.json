@@ -1,0 +1,469 @@
+{
+  "bindings": {
+    "dataset_jobs": "${dataset_jobs}",
+    "dataset_masterNodes": "${dataset_masterNodes}",
+    "dataset_metrics": "${dataset_metrics}"
+  },
+  "sections": [
+    {
+      "card": {
+        "cardType": "section",
+        "closed": false,
+        "title": "Summary"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Job",
+            "visualization": {
+              "config": {
+                "style": "name",
+                "type": "list"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "jobName"
+                },
+                "type": "stats"
+              },
+              "type": "list"
+            }
+          },
+          "layout": {
+            "h": 12,
+            "w": 4,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Status",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "status"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 12,
+            "w": 4,
+            "x": 4,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Master Node",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "link": {
+                    "__typename": "ForeignKey",
+                    "dstFields": [
+                      "host",
+                      "datacenter"
+                    ],
+                    "label": "masterNode",
+                    "srcFields": [
+                      "host",
+                      "datacenter"
+                    ],
+                    "targetDataset": "$dataset_masterNodes",
+                    "targetStageLabel": null,
+                    "type": "linked"
+                  }
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 12,
+            "w": 4,
+            "x": 8,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "URL",
+            "visualization": {
+              "config": {
+                "style": "twocolumn",
+                "type": "list"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "link"
+                },
+                "type": "stats"
+              },
+              "type": "list"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 12
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Last User",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "userName"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 4,
+            "x": 8,
+            "y": 12
+          }
+        }
+      ]
+    },
+    {
+      "card": {
+        "cardType": "section",
+        "closed": false,
+        "title": "Metrics"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Failure Count",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "legend": {
+                  "placement": "right",
+                  "type": "list"
+                },
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "aggregate": "sum",
+                  "datasetId": "$dataset_metrics",
+                  "description": "Count",
+                  "groupBy": [
+                    "host",
+                    "datacenter",
+                    "jobName"
+                  ],
+                  "heuristics": null,
+                  "id": {
+                    "datasetId": "$dataset_metrics",
+                    "name": "FAILURE Count"
+                  },
+                  "interval": null,
+                  "link": {
+                    "__typename": "ForeignKey",
+                    "dstFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "label": "job",
+                    "srcFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "targetDataset": "$dataset_jobs",
+                    "targetStageLabel": null,
+                    "type": "foreign"
+                  },
+                  "name": "FAILURE Count",
+                  "rollup": "count",
+                  "type": "gauge",
+                  "unit": "",
+                  "userDefined": true
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 6,
+            "x": 6,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Success Count",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "legend": {
+                  "placement": "right",
+                  "type": "list"
+                },
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "aggregate": "sum",
+                  "datasetId": "$dataset_metrics",
+                  "description": "Count",
+                  "groupBy": [
+                    "host",
+                    "datacenter",
+                    "jobName"
+                  ],
+                  "heuristics": null,
+                  "id": {
+                    "datasetId": "$dataset_metrics",
+                    "name": "SUCCESS Count"
+                  },
+                  "interval": null,
+                  "link": {
+                    "__typename": "ForeignKey",
+                    "dstFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "label": "job",
+                    "srcFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "targetDataset": "$dataset_jobs",
+                    "targetStageLabel": null,
+                    "type": "foreign"
+                  },
+                  "name": "SUCCESS Count",
+                  "rollup": "count",
+                  "type": "gauge",
+                  "unit": "",
+                  "userDefined": true
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 6,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Average Run Duration",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "legend": {
+                  "placement": "right",
+                  "type": "list"
+                },
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "ms",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "aggregate": "sum",
+                  "datasetId": "$dataset_metrics",
+                  "description": "average duration",
+                  "groupBy": [
+                    "host",
+                    "datacenter",
+                    "jobName"
+                  ],
+                  "heuristics": null,
+                  "id": {
+                    "datasetId": "$dataset_metrics",
+                    "name": "duration"
+                  },
+                  "interval": null,
+                  "link": {
+                    "__typename": "ForeignKey",
+                    "dstFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "label": "job",
+                    "srcFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "targetDataset": "$dataset_jobs",
+                    "targetStageLabel": null,
+                    "type": "foreign"
+                  },
+                  "name": "duration",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": "ms",
+                  "userDefined": true
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 6,
+            "x": 6,
+            "y": 8
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Average Queue Time",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "legend": {
+                  "placement": "right",
+                  "type": "list"
+                },
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "ms",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "aggregate": "sum",
+                  "datasetId": "$dataset_metrics",
+                  "description": "average queueTime",
+                  "groupBy": [
+                    "host",
+                    "datacenter",
+                    "jobName"
+                  ],
+                  "heuristics": null,
+                  "id": {
+                    "datasetId": "$dataset_metrics",
+                    "name": "queueTime"
+                  },
+                  "interval": null,
+                  "link": {
+                    "__typename": "ForeignKey",
+                    "dstFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "label": "job",
+                    "srcFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "targetDataset": "$dataset_jobs",
+                    "targetStageLabel": null,
+                    "type": "foreign"
+                  },
+                  "name": "queueTime",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": "ms",
+                  "userDefined": true
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 6,
+            "x": 0,
+            "y": 8
+          }
+        }
+      ]
+    }
+  ]
+}

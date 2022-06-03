@@ -1,0 +1,618 @@
+{
+  "bindings": {
+    "dataset_builds": "${dataset_builds}",
+    "dataset_jobs": "${dataset_jobs}",
+    "dataset_masterNodes": "${dataset_masterNodes}",
+    "dataset_metrics": "${dataset_metrics}"
+  },
+  "sections": [
+    {
+      "card": {
+        "cardType": "section",
+        "closed": false,
+        "title": "OVERVIEW"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "job",
+            "visualization": {
+              "config": {
+                "style": "twocolumn",
+                "type": "list"
+              },
+              "source": {
+                "stat": {
+                  "link": {
+                    "dstFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "label": "job",
+                    "srcFields": [
+                      "host",
+                      "datacenter",
+                      "jobName"
+                    ],
+                    "targetDataset": "$dataset_jobs",
+                    "targetLabelField": "jobName",
+                    "type": "linked"
+                  }
+                },
+                "type": "stats"
+              },
+              "type": "list"
+            }
+          },
+          "layout": {
+            "h": 24,
+            "w": 3,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Master Node",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "link": {
+                    "dstFields": [
+                      "host",
+                      "datacenter"
+                    ],
+                    "label": "masterNode",
+                    "srcFields": [
+                      "host",
+                      "datacenter"
+                    ],
+                    "targetDataset": "$dataset_masterNodes",
+                    "targetLabelField": "label",
+                    "type": "linked"
+                  }
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 6,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Job / Build Number",
+            "visualization": {
+              "config": {
+                "style": "name",
+                "type": "list"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "label"
+                },
+                "type": "stats"
+              },
+              "type": "list"
+            }
+          },
+          "layout": {
+            "h": 24,
+            "w": 3,
+            "x": 3,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Agent",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "slaveInfoSlaveName"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 9,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Build Cause",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "buildCause"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 6,
+            "y": 8
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Result",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "result"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 9,
+            "y": 8
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Started User",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "startedUserName"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 6,
+            "y": 16
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Failure Cause",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "buildFailureCauses"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 9,
+            "y": 16
+          }
+        }
+      ]
+    },
+    {
+      "card": {
+        "cardType": "section",
+        "closed": true,
+        "title": "SOURCE CONTROL"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Branch",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "scmInfoBranch"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 4,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Commit",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "scmInfoCommit"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 4,
+            "x": 4,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "URL",
+            "visualization": {
+              "config": {
+                "innerRadius": 0.6,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": true
+                },
+                "type": "arc"
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "scmInfoUrl"
+                },
+                "type": "stats"
+              },
+              "type": "circular"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 4,
+            "x": 8,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "card": {
+        "cardType": "section",
+        "closed": false,
+        "title": "AGGREGATE METRICS"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Average Queue Time",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": false
+                },
+                "type": "xy",
+                "xConfig": {
+                  "visible": true
+                },
+                "yConfig": {
+                  "visible": true
+                }
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "queueSecs"
+                },
+                "type": "stats"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 9,
+            "w": 6,
+            "x": 6,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Average Build Time",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "legend": {
+                  "placement": "right",
+                  "type": "list",
+                  "visible": false
+                },
+                "type": "xy",
+                "xConfig": {
+                  "visible": true
+                },
+                "yConfig": {
+                  "visible": true
+                }
+              },
+              "source": {
+                "stat": {
+                  "fieldId": "buildSecs"
+                },
+                "type": "stats"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 9,
+            "w": 6,
+            "x": 0,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "card": {
+        "cardType": "section",
+        "closed": false,
+        "title": "BUILD METRICS"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Build Time",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "legend": {
+                  "placement": "right",
+                  "type": "list"
+                },
+                "type": "xy",
+                "xConfig": {
+                  "visible": true
+                },
+                "yConfig": {
+                  "unit": "ms",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "aggregate": "sum",
+                  "datasetId": "$dataset_metrics",
+                  "description": "average duration",
+                  "groupBy": [
+                    "host",
+                    "datacenter",
+                    "jobName",
+                    "buildNum"
+                  ],
+                  "heuristics": null,
+                  "id": {
+                    "datasetId": "$dataset_metrics",
+                    "name": "duration"
+                  },
+                  "interval": null,
+                  "link": {
+                    "__typename": "ForeignKey",
+                    "dstFields": [
+                      "host",
+                      "datacenter",
+                      "jobName",
+                      "buildNum"
+                    ],
+                    "label": "build",
+                    "srcFields": [
+                      "host",
+                      "datacenter",
+                      "jobName",
+                      "buildNum"
+                    ],
+                    "targetDataset": "$dataset_builds",
+                    "targetStageLabel": null,
+                    "type": "foreign"
+                  },
+                  "name": "duration",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": "ms",
+                  "userDefined": true
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 16,
+            "w": 6,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Queue Time",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "legend": {
+                  "placement": "right",
+                  "type": "list"
+                },
+                "type": "xy",
+                "xConfig": {
+                  "visible": true
+                },
+                "yConfig": {
+                  "unit": "ms",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "aggregate": "sum",
+                  "datasetId": "$dataset_metrics",
+                  "description": "average queueTime",
+                  "groupBy": [
+                    "host",
+                    "datacenter",
+                    "jobName",
+                    "buildNum"
+                  ],
+                  "heuristics": null,
+                  "id": {
+                    "datasetId": "$dataset_metrics",
+                    "name": "queueTime"
+                  },
+                  "interval": null,
+                  "link": {
+                    "__typename": "ForeignKey",
+                    "dstFields": [
+                      "host",
+                      "datacenter",
+                      "jobName",
+                      "buildNum"
+                    ],
+                    "label": "build",
+                    "srcFields": [
+                      "host",
+                      "datacenter",
+                      "jobName",
+                      "buildNum"
+                    ],
+                    "targetDataset": "$dataset_builds",
+                    "targetStageLabel": null,
+                    "type": "foreign"
+                  },
+                  "name": "queueTime",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": "ms",
+                  "userDefined": true
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 16,
+            "w": 6,
+            "x": 6,
+            "y": 0
+          }
+        }
+      ]
+    }
+  ]
+}
